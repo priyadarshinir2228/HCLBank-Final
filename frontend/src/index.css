@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1a73e8;
+  --color-navy: #0d1b3e;
+  --color-surface: #f5f7fa;
+  --radius-fintech: 12px;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-navy font-sans antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white p-6 rounded-fintech shadow-sm border border-gray-100;
+  }
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-2 rounded-fintech hover:bg-blue-600 transition-all font-medium disabled:opacity-50;
+  }
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-fintech focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all;
+  }
+}
