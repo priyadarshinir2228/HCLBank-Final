@@ -6,7 +6,6 @@ import com.HCLBank.banking.dto.RegisterRequestDTO;
 import com.HCLBank.banking.exception.InvalidOperationException;
 import com.HCLBank.banking.repository.UserRepository;
 import com.HCLBank.banking.security.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,25 +25,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
+    private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
+    public AuthService(UserRepository userRepository,
+                       CustomerRepository customerRepository,
+                       AccountRepository accountRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtUtil jwtUtil,
+                       AuthenticationManager authenticationManager,
+                       UserDetailsService userDetailsService) {
+        this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Transactional
     public AuthResponseDTO register(RegisterRequestDTO request) {
