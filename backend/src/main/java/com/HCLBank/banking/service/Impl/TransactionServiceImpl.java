@@ -1,4 +1,4 @@
-package com.HCLBank.banking.service.impl;
+package com.HCLBank.banking.service.Impl;
 
 import com.HCLBank.banking.dto.TransactionHistoryDTO;
 import com.HCLBank.banking.entity.Account;
